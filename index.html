@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,20 @@
     <title>MemeGen</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-    
+
+<body onload="init()">
+    <div>
+        <input type="text" class="txt-input" data-txt="0" oninput="onChangeTxt(this.value)" placeholder="Type funny text"/>
+    </div>
+    <canvas class="canvas" width="500" height="500"></canvas>
+
+    <div class="gallery">
+        <div data-img="102" onclick="onSelectImg(102)"><img src="img/memes/1.jpg" style="width: 200px;"/></div>
+        <div data-img="103" onclick="onSelectImg(103)"><img src="img/memes/2.jpg" style="width: 200px;"/></div>
+    </div>
+
+    <script src="js/meme-service.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
