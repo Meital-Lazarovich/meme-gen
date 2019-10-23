@@ -12,6 +12,10 @@
 <body onload="init()">
     <div>
         <input type="text" class="txt-input" data-txt="0" oninput="onChangeTxt(this.value)" placeholder="Type funny text"/>
+        <button class="decrease-font" onclick="onChangeFontSize(-5)">smaller</button>
+        <button class="increase-font" onclick="onChangeFontSize(5)">bigger</button>
+        <button class="line-down" onclick="onChangeLineHeight(10)">Down</button>
+        <button class="line-up" onclick="onChangeLineHeight(-10)">Up</button>
     </div>
     <canvas class="canvas" width="500" height="500"></canvas>
 

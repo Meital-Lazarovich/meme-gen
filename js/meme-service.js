@@ -28,12 +28,12 @@ function createImg(id, url, keywords) {
 function createMeme(selectedImgId) {
     gMeme = {
         selectedImgId,
-        selectedTxtIdx: 0,
-        txts: [{size: 70, align: 'center', color: 'white'}]
+        selectedTxtIdx: 1,
+        txts: [{size: 70, align: 'center', color: 'white', height: 0}, {size: 70, align: 'center', color: 'white', height: 0}, {size: 70, align: 'center', color: 'white', height: 0}]
     }
 }
 
-function changeTxt(prop, val) {
+function updateTxt(prop, val) {
     gMeme.txts[gMeme.selectedTxtIdx][prop] = val;
 }
 
@@ -46,3 +46,8 @@ function getCurrImg() {
 function getCurrTxt() {
     return gMeme.txts[gMeme.selectedTxtIdx];
 }
+
+function getCurrTxtIdx() {
+    return gMeme.txts.indexOf(getCurrTxt());
+}
+
