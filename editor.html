@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MemeGen</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="initCanvas()">
+    <header class="flex container space-between align-center">
+        <img src="img/icons/logo.png"/>
+        <ul class="nav-bar flex clean-list">
+            <li><a href="#" class="nav-item flex justify-center align-center">Gallery</a></li>
+            <li><a href="#" class="nav-item flex justify-center align-center">About</a></li>
+        </ul>
+    </header>
+    <main class="reverse">
+        <div>
+            <input type="text" class="txt-input" data-txt="0" oninput="onChangeTxt(this.value)" placeholder="Type funny text"/>
+            <button class="decrease-font" onclick="onChangeFontSize(-5)">smaller</button>
+            <button class="increase-font" onclick="onChangeFontSize(5)">bigger</button>
+            <button class="line-down" onclick="onChangeLineHeight(10)">Down</button>
+            <button class="line-up" onclick="onChangeLineHeight(-10)">Up</button>
+            <button class="switch-line" onclick="onSwitchLine()">Switch Line</button>
+        </div>
+        <canvas class="canvas" width="500" height="500"></canvas>
+    </main>
+    <footer class="flex space-between align-center">
+            <img class="logo" src="img/icons/logo.png"/>
+            <p>&copy; Meital Lazarovich 2019</p>
+    </footer>
+
+    <script src="js/util.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/editor.js"></script>
+</body>
+
+</html>

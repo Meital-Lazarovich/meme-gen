@@ -5,9 +5,12 @@ let gCtx;
 let gImgWidth;
 let gImgHeight;
 
-function init() {
+function initCanvas() {
+    createImgs();
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
+    renderImg();
+    document.querySelector('.txt-input').focus();
 }
 
 function renderImg() {
@@ -59,14 +62,6 @@ function renderImgTxts() {
 
 function onChangeTxt(txt) {
     updateTxt('line', txt);
-    renderImg();
-}
-
-function onSelectImg(imgIdx) {
-    let elTxtInput = document.querySelector('.txt-input');
-    elTxtInput.value = '';
-    elTxtInput.focus();
-    createMeme(imgIdx);
     renderImg();
 }
 

@@ -9,24 +9,30 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="init()">
-    <div>
-        <input type="text" class="txt-input" data-txt="0" oninput="onChangeTxt(this.value)" placeholder="Type funny text"/>
-        <button class="decrease-font" onclick="onChangeFontSize(-5)">smaller</button>
-        <button class="increase-font" onclick="onChangeFontSize(5)">bigger</button>
-        <button class="line-down" onclick="onChangeLineHeight(10)">Down</button>
-        <button class="line-up" onclick="onChangeLineHeight(-10)">Up</button>
-        <button class="switch-line" onclick="onSwitchLine()">Switch Line</button>
-    </div>
-    <canvas class="canvas" width="500" height="500"></canvas>
+<body onload="initGallery()">
+    <header class="flex space-between align-center">
+        <img class="logo" src="img/icons/logo.png"/>
+        <ul class="nav-bar flex clean-list">
+            <li><a href="#" class="nav-item active flex justify-center align-center">Gallery</a></li>
+            <li><a href="#" class="nav-item flex justify-center align-center">About</a></li>
+        </ul>
+    </header>
+    <section class="keywords"></section>
+    <main>
+        <div class="gallery-container">
+            <div data-img="102" onclick="onSelectImg(102)"><img src="img/memes/1.jpg"/></div>
+            <div data-img="103" onclick="onSelectImg(103)"><img src="img/memes/2.jpg"/></div>
+        </div>
+    </main>
+    <footer class="flex space-between align-center">
+        <img class="logo" src="img/icons/logo.png"/>
+        <p>&copy; Meital Lazarovich 2019</p>
+    </footer>
 
-    <div class="gallery">
-        <div data-img="102" onclick="onSelectImg(102)"><img src="img/memes/1.jpg" style="width: 200px;"/></div>
-        <div data-img="103" onclick="onSelectImg(103)"><img src="img/memes/2.jpg" style="width: 200px;"/></div>
-    </div>
-
+    <script src="js/util.js"></script>
     <script src="js/meme-service.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/editor.js"></script>
 </body>
 
 </html>
