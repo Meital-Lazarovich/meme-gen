@@ -28,8 +28,8 @@ function createImg(id, url, keywords) {
 function createMeme(selectedImgId) {
     gMeme = {
         selectedImgId,
-        selectedTxtIdx: 1,
-        txts: [{size: 70, align: 'center', color: 'white', height: 0}, {size: 70, align: 'center', color: 'white', height: 0}, {size: 70, align: 'center', color: 'white', height: 0}]
+        selectedTxtIdx: 0,
+        txts: [{size: 70, align: 'center', color: 'white', height: 70}, {size: 70, align: 'center', color: 'white', height: 500}]
     }
 }
 
@@ -39,8 +39,12 @@ function updateTxt(prop, val) {
 
 function getCurrImg() {
     return gImgs.find(img => {
-        return img.id === gMeme.selectedImgId
+        return img.id === gMeme.selectedImgId;
     });
+}
+
+function getTxts() {
+    return gMeme.txts;
 }
 
 function getCurrTxt() {
@@ -49,5 +53,11 @@ function getCurrTxt() {
 
 function getCurrTxtIdx() {
     return gMeme.txts.indexOf(getCurrTxt());
+}
+
+function switchLine() {
+    let currLine = gMeme.selectedTxtIdx;
+    let newLine = (currLine === gMeme.txts.length - 1) ? 0 : currLine + 1;
+    gMeme.selectedTxtIdx = newLine;
 }
 
