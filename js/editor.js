@@ -18,9 +18,21 @@ function renderImg() {
     img.onload = function () {
         let imgHeight = img.height;
         let imgWidth = img.width;
-        let resizeRatio = 400 / imgHeight;
-        let height = imgHeight * resizeRatio;
-        let width = imgWidth * resizeRatio;
+
+        let imgRatio = imgHeight / imgWidth;
+        let height;
+        let width;
+
+        if (imgRatio > 1) {
+            //verticle img:
+            imgRatio = imgWidth / imgHeight;
+            height = 400;
+            width = height * imgRatio;
+        } else {
+            //horizontal img:
+            width = 400;
+            height = width * imgRatio;
+        }
 
         gCanvas.width = width;
         gCanvas.height = height;
@@ -39,11 +51,19 @@ function renderImgTxts() {
     gCtx.strokeStyle = 'black';
     gCtx.lineWidth = 3;
 
+    // heighlighting the current txt
+    let currTxt = getCurrTxt();
+    let currHeight = currTxt.height;
+    let currSize = currTxt.size;
+    gCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+    gCtx.fillRect(0, currHeight - currSize / 2 - 10, gImgWidth, currSize + 10);
+
     let txts = getTxts();
 
     txts.forEach(txt => {
-        gCtx.fillStyle = txt.color;
-        gCtx.font = `bold ${txt.size}px Impact`;
+        gCtx.fillStyle = txt.txtColor;
+        gCtx.strokeStyle = txt.strokeColor;
+        gCtx.font = `bold ${txt.size}px ${txt.font}`;
         let txtX;
         switch (txt.align) {
             case 'center':
@@ -61,12 +81,26 @@ function renderImgTxts() {
         };
 
         let txtY = txt.height;
+        gCtx.textBaseline = "middle";
 
         let line = txt.line;
         if (!line) return;
         gCtx.fillText(line, txtX, txtY);
         gCtx.strokeText(line, txtX, txtY);
     })
+}
+
+function onCanvasClicked(ev) {
+    let y;
+    if (ev.type === 'touchstart') {
+        ev.preventDefault();
+        y = ev.touches[0].clientY;
+    }
+    else y = ev.offsetY;
+    let canvasCoords = gCanvas.getBoundingClientRect();
+    y -= (canvasCoords.y + window.scrollY);
+    if (canvasCoords.top > 70) y += 9;
+    console.log('y', y);
 }
 
 function onChangeTxt(txt) {
@@ -84,16 +118,49 @@ function onChangeFontSize(addedSize) {
 
 function onChangeLineHeight(addedHeight) {
     let height = getCurrTxt().height;
-    height += addedHeight;
-    updateTxt('height', height);
+    updateTxt('height', height + addedHeight);
     renderImg();
 }
 
 function onSwitchLine() {
     switchLine();
-    let currLineTxt = getCurrTxt().line;
-    if (!currLineTxt) currLineTxt = '';
+    onCurrLineChange()
+}
+
+function onAddLine() {
+    addLine();
+    onCurrLineChange()
+}
+
+function onRemoveLine() {
+    removeLine();
+    onCurrLineChange()
+}
+
+function onChangeAlign(align) {
+    updateTxt('align', align);
+    renderImg();
+}
+
+function onChangeFont(font) {
+    updateTxt('font', font);
+    renderImg();
+}
+
+function onChangeColor(prop, color) {
+    updateTxt(prop, color);
+    renderImg();
+}
+
+
+
+function onCurrLineChange() {
+    let currTxt = getCurrTxt();
     let elTxtInput = document.querySelector('.line-input');
-    elTxtInput.value = currLineTxt;
+    elTxtInput.value = currTxt.line;
     elTxtInput.focus();
+    document.querySelector('.select-font').value = currTxt.font;
+    document.querySelector('#stroke-color').value = currTxt.strokeColor;
+    document.querySelector('#txt-color').value = currTxt.txtColor;
+    renderImg();
 }

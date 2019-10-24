@@ -29,9 +29,13 @@ function createMeme(selectedImgId) {
     gMeme = {
         selectedImgId,
         selectedTxtIdx: 0,
-        txts: [{size: 70, align: 'center', color: 'white', height: 70}, {size: 70, align: 'center', color: 'white', height: 500}]
+        txts: [createTxt(50)]
     }
     saveMeme();
+}
+
+function createTxt(height) {
+    return {size: 60, align: 'center', txtColor: 'white', strokeColor: 'black', height, line: '', font: 'Impact'}
 }
 
 function updateTxt(prop, val) {
@@ -59,11 +63,34 @@ function getCurrTxtIdx() {
 }
 
 function switchLine() {
-    let currLine = gMeme.selectedTxtIdx;
-    let newLine = (currLine === gMeme.txts.length - 1) ? 0 : currLine + 1;
-    gMeme.selectedTxtIdx = newLine;
-    saveMeme()
+    let currTxtIdx = gMeme.selectedTxtIdx;
+    let newCurrTxtIdx = (currTxtIdx === gMeme.txts.length - 1) ? 0 : currTxtIdx + 1;
+    gMeme.selectedTxtIdx = newCurrTxtIdx;
+    saveMeme();
 }
+
+function addLine() {
+    let height = 200;
+    if (gMeme.txts.length === 1) height = 350;
+    gMeme.txts.push(createTxt(height));
+    gMeme.selectedTxtIdx = gMeme.txts.length - 1;
+    saveMeme();
+}
+
+function removeLine() {
+    let currTxtIdx = getCurrTxtIdx();
+    if (gMeme.txts.length === 1) {
+        let imgId = gMeme.selectedImgId;
+        createMeme(imgId);
+        return
+    }
+    gMeme.txts.splice(currTxtIdx, 1);
+    gMeme.selectedTxtIdx = gMeme.txts.length - 1;
+    switchLine();
+}
+
+
+// saving and loading from local storage
 
 function saveMeme() {
     saveToStorage(MEME_KEY, gMeme);
@@ -72,3 +99,5 @@ function saveMeme() {
 function loadMeme() {
     return loadFromStorage(MEME_KEY);
 }
+
+

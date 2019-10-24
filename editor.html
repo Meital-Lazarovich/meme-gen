@@ -18,30 +18,33 @@
         </ul>
     </header>
     <main class="editor flex space-around align-center">
-        <canvas class="canvas" width="500" height="500"></canvas>
+        <canvas class="canvas" width="500" height="500" onclick="onCanvasClicked(event)" ontouchstart="onCanvasClicked(event)"></canvas>
         <section class="props flex column align-center space-between">
             <div><input type="text" class="line-input" oninput="onChangeTxt(this.value)" placeholder="Type your funny text here"/></div>
             <div class="line-props flex space-between align-center">
                 <button onclick="onSwitchLine()" title="switch line"><img src="img/icons/switch.png"/></button>
-                <button title="add line"><img src="img/icons/add.png"/></button>
-                <button title="delete line"><img src="img/icons/trash.png"/></button>
+                <button title="add line" onclick="onAddLine()"><img src="img/icons/add.png"/></button>
+                <button title="remove line" onclick="onRemoveLine()"><img src="img/icons/trash.png"/></button>
                 <button onclick="onChangeLineHeight(10)" title="line down"><img src="img/icons/add.png"/></button>
                 <button onclick="onChangeLineHeight(-10)" title="line up"><img src="img/icons/add.png"/></button>
             </div>
             <div class="text-props flex space-between align-center">
                 <button onclick="onChangeFontSize(-5)" title="decrease font"><img src="img/icons/decrease-font.png"/></button>
                 <button onclick="onChangeFontSize(5)" title="increase font"><img src="img/icons/increase-font.png"/></button>
-                <button title="align left"><img src="img/icons/align-left.png"/></button>
-                <button title="align center"><img src="img/icons/center-text.png"/></button>
-                <button title="align right"><img src="img/icons/align-right.png"/></button>
+                <button title="align left" onclick="onChangeAlign('left')"><img src="img/icons/align-left.png"/></button>
+                <button title="align center" onclick="onChangeAlign('center')"><img src="img/icons/center-text.png"/></button>
+                <button title="align right" onclick="onChangeAlign('right')"><img src="img/icons/align-right.png"/></button>
             </div>
             <div class="font-props flex space-between align-center">
-                <select class="select-font" title="text font">
-                    <option value="impact" class="font-impact">Impact</option>
+                <select class="select-font" title="text font" onchange="onChangeFont(this.value)">
+                    <option value="Impact" class="font-impact">Impact</option>
+                    <option value="Comic Sans MS" class="font-comic">Comic</option>
+                    <option value="Arial Black" class="font-arial">Arial</option>
                 </select>
-                <button><img src="img/icons/text-stroke.png" title="text stroke"/></button>
-                <button><label for="color-input"><img src="img/icons/color.png" title="text color"/></label></button>
-                <input type="color" id="color-input"/>
+                <button title="stroke color" class="stroke-color"><label for="stroke-color"><img src="img/icons/text-stroke.png"/></label></button>
+                <input type="color" id="stroke-color" class="color-input" onchange="onChangeColor('strokeColor', this.value)"/>
+                <button title="text color" class="txt-color"><label for="txt-color"><img src="img/icons/color.png"/></label></button>
+                <input type="color" id="txt-color" class="color-input" onchange="onChangeColor('txtColor', this.value)"/>
             </div>
             <button class="share-btn">Share</button>
         </section>
