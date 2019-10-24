@@ -4,6 +4,8 @@ let gCanvas;
 let gCtx;
 let gImgWidth;
 let gImgHeight;
+let gIsHoldingLine = false;
+
 
 function initCanvas() {
     createImgs();
@@ -53,10 +55,12 @@ function renderImgTxts() {
 
     // heighlighting the current txt
     let currTxt = getCurrTxt();
-    let currHeight = currTxt.height;
-    let currSize = currTxt.size;
-    gCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-    gCtx.fillRect(0, currHeight - currSize / 2 - 10, gImgWidth, currSize + 10);
+    if (currTxt) {
+        let currHeight = currTxt.height;
+        let currSize = currTxt.size;
+        gCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        gCtx.fillRect(0, currHeight - currSize / 2 - 10, gImgWidth, currSize + 10);
+    }
 
     let txts = getTxts();
 
@@ -97,10 +101,46 @@ function onCanvasClicked(ev) {
         y = ev.touches[0].clientY;
     }
     else y = ev.offsetY;
-    let canvasCoords = gCanvas.getBoundingClientRect();
-    y -= (canvasCoords.y + window.scrollY);
-    if (canvasCoords.top > 70) y += 9;
-    console.log('y', y);
+    
+    let txts = getTxts();
+    let clickedLine = txts.find(txt => {
+        return (
+            y > txt.height - txt.size / 2 &&
+            y < txt.height + txt.size / 2
+        )
+    })
+    if (clickedLine) {
+        gIsHoldingLine = true;
+        onSwitchLine(clickedLine);
+        document.querySelector('.canvas').classList.remove('hovering-line');
+        document.querySelector('.canvas').classList.add('holding-line');
+    } else onUnselectLine();
+}
+
+function onCanvasClickEnd(ev) {
+    gIsHoldingLine = false;
+    document.querySelector('.canvas').classList.remove('holding-line');
+    onCurrLineChange();
+}
+
+function onCanvasClickMove(ev) {
+    let y = ev.offsetY;
+    if (ev.type === 'mousemove' && !gIsHoldingLine) {
+        let txts = getTxts();
+        if (!txts) return;
+        let hoverdLine = txts.find(txt => {
+            return (
+                y > txt.height - txt.size / 2 &&
+                y < txt.height + txt.size / 2
+            )
+        })
+        if (hoverdLine) document.querySelector('.canvas').classList.add('hovering-line');
+        else document.querySelector('.canvas').classList.remove('hovering-line');
+    }
+    else if (gIsHoldingLine) {
+        updateTxt('height', y);
+        renderImg();
+    }
 }
 
 function onChangeTxt(txt) {
@@ -116,19 +156,14 @@ function onChangeFontSize(addedSize) {
     renderImg();
 }
 
-function onChangeLineHeight(addedHeight) {
-    let height = getCurrTxt().height;
-    updateTxt('height', height + addedHeight);
-    renderImg();
-}
-
-function onSwitchLine() {
-    switchLine();
-    onCurrLineChange()
+function onSwitchLine(clickedLine) {
+    if (!clickedLine) switchLine();
+    else pickLine(clickedLine);
+    onCurrLineChange();
 }
 
 function onAddLine() {
-    addLine();
+    addLine(gImgHeight);
     onCurrLineChange()
 }
 
@@ -152,15 +187,21 @@ function onChangeColor(prop, color) {
     renderImg();
 }
 
+function onUnselectLine() {
+    unselectLine();
+    onCurrLineChange();
+}
 
 
 function onCurrLineChange() {
     let currTxt = getCurrTxt();
     let elTxtInput = document.querySelector('.line-input');
-    elTxtInput.value = currTxt.line;
-    elTxtInput.focus();
-    document.querySelector('.select-font').value = currTxt.font;
-    document.querySelector('#stroke-color').value = currTxt.strokeColor;
-    document.querySelector('#txt-color').value = currTxt.txtColor;
+    if (currTxt) {
+        elTxtInput.value = currTxt.line;
+        elTxtInput.focus();
+        document.querySelector('.select-font').value = currTxt.font;
+        document.querySelector('#stroke-color').value = currTxt.strokeColor;
+        document.querySelector('#txt-color').value = currTxt.txtColor;
+    } else elTxtInput.value = '';
     renderImg();
 }

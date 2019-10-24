@@ -35,10 +35,11 @@ function createMeme(selectedImgId) {
 }
 
 function createTxt(height) {
-    return {size: 60, align: 'center', txtColor: 'white', strokeColor: 'black', height, line: '', font: 'Impact'}
+    return {size: 60, align: 'center', txtColor: '#ffffff', strokeColor: '#000000', height, line: '', font: 'Impact'}
 }
 
 function updateTxt(prop, val) {
+    if (!gMeme.txts[gMeme.selectedTxtIdx]) return;
     gMeme.txts[gMeme.selectedTxtIdx][prop] = val;
     saveMeme();
 }
@@ -69,9 +70,22 @@ function switchLine() {
     saveMeme();
 }
 
-function addLine() {
-    let height = 200;
-    if (gMeme.txts.length === 1) height = 350;
+function pickLine(line) {
+    let newCurrTxtIdx = gMeme.txts.findIndex(txt => {
+        return txt === line;
+    });
+    gMeme.selectedTxtIdx = newCurrTxtIdx;
+    saveMeme();
+}
+
+function unselectLine() {
+    gMeme.selectedTxtIdx = null;
+    saveMeme();
+}
+
+function addLine(imgHeight) {
+    let height = imgHeight / 2;
+    if (gMeme.txts.length === 1) height = imgHeight - 50;
     gMeme.txts.push(createTxt(height));
     gMeme.selectedTxtIdx = gMeme.txts.length - 1;
     saveMeme();
