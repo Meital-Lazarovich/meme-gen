@@ -99,6 +99,8 @@ function onCanvasClicked(ev) {
     if (ev.type === 'touchstart') {
         ev.preventDefault();
         y = ev.touches[0].clientY;
+        let canvasCoords = gCanvas.getBoundingClientRect();
+        y -= (canvasCoords.y + window.scrollY);
     }
     else y = ev.offsetY;
     
@@ -137,8 +139,14 @@ function onCanvasClickMove(ev) {
         })
         if (hoverdLine) document.querySelector('.canvas').classList.add('hovering-line');
         else document.querySelector('.canvas').classList.remove('hovering-line');
+        return;
     }
-    else if (gIsHoldingLine) {
+    if (ev.type === 'touchmove') {
+        y = ev.touches[0].clientY;
+        let canvasCoords = gCanvas.getBoundingClientRect();
+        y -= (canvasCoords.y + window.scrollY);
+    }
+    if (gIsHoldingLine) {
         updateTxt('height', y);
         renderImg();
     }
