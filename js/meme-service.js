@@ -63,6 +63,10 @@ function getCurrTxtIdx() {
     return gMeme.txts.indexOf(getCurrTxt());
 }
 
+function getImgs() {
+    return gImgs;
+}
+
 function switchLine() {
     let currTxtIdx = gMeme.selectedTxtIdx;
     let newCurrTxtIdx = (currTxtIdx === gMeme.txts.length - 1) ? 0 : currTxtIdx + 1;
