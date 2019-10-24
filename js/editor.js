@@ -202,6 +202,16 @@ function onUnselectLine() {
     onCurrLineChange();
 }
 
+function openShareModal() {
+    document.querySelector('.share-modal').classList.remove('closed');
+    document.querySelector('body').classList.add('opened-modal');
+}
+
+function closeShareModal() {
+    document.querySelector('.share-modal').classList.add('closed');
+    document.querySelector('body').classList.remove('opened-modal');
+}
+
 
 function onCurrLineChange() {
     let currTxt = getCurrTxt();

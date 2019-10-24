@@ -10,6 +10,7 @@
 </head>
 
 <body onload="initCanvas()">
+    <div class="screen" onclick="closeShareModal()"></div>
     <header class="flex container space-between align-center small">
         <img src="img/icons/logo.png"/>
         <ul class="nav-bar flex clean-list">
@@ -49,7 +50,13 @@
                 <button title="text color" class="txt-color"><label for="txt-color"><img src="img/icons/color.png"/></label></button>
                 <input type="color" id="txt-color" class="color-input" onchange="onChangeColor('txtColor', this.value)"/>
             </div>
-            <button class="share-btn">Share</button>
+            <button class="share-btn" onclick="openShareModal()">Share</button>
+            <section class="share-modal closed flex column align-center justify-center">
+                <button class="close-btn" onclick="closeShareModal()">X</button>
+                <button class="share-btn">Share</button>
+                <button class="share-btn">Download</button>
+                <button class="share-btn">Save</button>
+            </section>
         </section>
     </main>
     <footer class="flex column space-around align-center small">
