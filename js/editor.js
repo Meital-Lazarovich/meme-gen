@@ -188,6 +188,7 @@ function onChangeAlign(align) {
 
 function onChangeFont(font) {
     updateTxt('font', font);
+    updateTxt('line', font);
     renderImg();
 }
 
