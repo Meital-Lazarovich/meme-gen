@@ -124,6 +124,7 @@ function onCanvasClickEnd(ev) {
 }
 
 function onCanvasClickMove(ev) {
+    ev.preventDefault();
     let y = ev.offsetY;
     if (ev.type === 'mousemove' && !gIsHoldingLine) {
         let txts = getTxts();
