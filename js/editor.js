@@ -10,17 +10,26 @@ function initCanvas() {
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
     renderImg();
-    document.querySelector('.txt-input').focus();
+    document.querySelector('.line-input').focus();
 }
 
 function renderImg() {
     let img = new Image();
     img.onload = function () {
-        gImgWidth = img.width;
-        gImgHeight = img.height;
-        gCanvas.width = gImgWidth;
-        gCanvas.height = gImgHeight;
-        gCtx.drawImage(img, 0, 0);
+        let imgHeight = img.height;
+        let imgWidth = img.width;
+        let resizeRatio = 400 / imgHeight;
+        let height = imgHeight * resizeRatio;
+        let width = imgWidth * resizeRatio;
+
+        gCanvas.width = width;
+        gCanvas.height = height;
+
+        gImgWidth = width;
+        gImgHeight = height;
+
+        gCtx.drawImage(img, 0, 0, imgWidth, imgHeight, 0, 0, width, height);
+
         renderImgTxts();
     }
     img.src = getCurrImg().url;
@@ -50,9 +59,9 @@ function renderImgTxts() {
                 gCtx.textAlign = 'start';
                 break;
         };
-    
+
         let txtY = txt.height;
-    
+
         let line = txt.line;
         if (!line) return;
         gCtx.fillText(line, txtX, txtY);
@@ -68,7 +77,7 @@ function onChangeTxt(txt) {
 function onChangeFontSize(addedSize) {
     let size = getCurrTxt().size;
     size += addedSize;
-    if (size < 30 || size > 120) return; 
+    if (size < 30 || size > 120) return;
     updateTxt('size', size);
     renderImg();
 }
@@ -84,7 +93,7 @@ function onSwitchLine() {
     switchLine();
     let currLineTxt = getCurrTxt().line;
     if (!currLineTxt) currLineTxt = '';
-    let elTxtInput = document.querySelector('.txt-input');
+    let elTxtInput = document.querySelector('.line-input');
     elTxtInput.value = currLineTxt;
     elTxtInput.focus();
 }

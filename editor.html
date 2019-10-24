@@ -10,25 +10,43 @@
 </head>
 
 <body onload="initCanvas()">
-    <header class="flex container space-between align-center">
+    <header class="flex container space-between align-center small">
         <img src="img/icons/logo.png"/>
         <ul class="nav-bar flex clean-list">
-            <li><a href="#" class="nav-item flex justify-center align-center">Gallery</a></li>
+            <li><a href="index.html" class="nav-item flex justify-center align-center">Gallery</a></li>
             <li><a href="#" class="nav-item flex justify-center align-center">About</a></li>
         </ul>
     </header>
-    <main class="reverse">
-        <div>
-            <input type="text" class="txt-input" data-txt="0" oninput="onChangeTxt(this.value)" placeholder="Type funny text"/>
-            <button class="decrease-font" onclick="onChangeFontSize(-5)">smaller</button>
-            <button class="increase-font" onclick="onChangeFontSize(5)">bigger</button>
-            <button class="line-down" onclick="onChangeLineHeight(10)">Down</button>
-            <button class="line-up" onclick="onChangeLineHeight(-10)">Up</button>
-            <button class="switch-line" onclick="onSwitchLine()">Switch Line</button>
-        </div>
+    <main class="editor">
         <canvas class="canvas" width="500" height="500"></canvas>
+        <section class="props flex column align-center space-between">
+            <input type="text" class="line-input" oninput="onChangeTxt(this.value)" placeholder="Type your funny text here"/>
+            <div class="line-props flex space-between align-center">
+                <button onclick="onSwitchLine()"><img src="img/icons/switch.png"/></button>
+                <button><img src="img/icons/add.png"/></button>
+                <button><img src="img/icons/trash.png"/></button>
+                <button onclick="onChangeLineHeight(10)"><img src="img/icons/add.png"/></button>
+                <button onclick="onChangeLineHeight(-10)"><img src="img/icons/add.png"/></button>
+            </div>
+            <div class="text-props flex space-between align-center">
+                <button onclick="onChangeFontSize(-5)"><img src="img/icons/decrease-font.png"/></button>
+                <button onclick="onChangeFontSize(5)"><img src="img/icons/increase-font.png"/></button>
+                <button><img src="img/icons/align-left.png"/></button>
+                <button><img src="img/icons/center-text.png"/></button>
+                <button><img src="img/icons/align-right.png"/></button>
+            </div>
+            <div class="font-props flex space-between align-center">
+                <select class="select-font">
+                    <option value="impact" class="font-impact">Impact</option>
+                </select>
+                <button><img src="img/icons/text-stroke.png"/></button>
+                <button><label for="color-input"><img src="img/icons/color.png"/></label></button>
+                <input type="color" id="color-input"/>
+            </div>
+            <button class="share-btn">Share</button>
+        </section>
     </main>
-    <footer class="flex space-between align-center">
+    <footer class="flex column space-around align-center small">
             <img class="logo" src="img/icons/logo.png"/>
             <p>&copy; Meital Lazarovich 2019</p>
     </footer>
