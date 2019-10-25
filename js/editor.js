@@ -34,7 +34,6 @@ function renderImg() {
             width = height * imgRatio;
         } else {
             //horizontal or square img:
-            console.log('windowHeight', windowHeight);
             width = windowWidth * 0.35;
             if (windowWidth < 1100) width = windowWidth * 0.4;
             if (windowWidth < 845) width = windowWidth * 0.4;
@@ -196,7 +195,6 @@ function onChangeAlign(align) {
 
 function onChangeFont(font) {
     updateTxt('font', font);
-    updateTxt('line', font);
     renderImg();
 }
 
