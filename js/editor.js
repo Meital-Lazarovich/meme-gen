@@ -24,15 +24,20 @@ function renderImg() {
         let imgRatio = imgHeight / imgWidth;
         let height;
         let width;
+        let windowHeight = window.innerHeight;
+        let windowWidth = window.innerWidth;
 
         if (imgRatio > 1) {
             //verticle img:
             imgRatio = imgWidth / imgHeight;
-            height = 400;
+            height = windowHeight * 0.8;
             width = height * imgRatio;
         } else {
-            //horizontal img:
-            width = 400;
+            //horizontal or square img:
+            width = windowWidth * 0.45;
+            if (windowWidth < 930) width = windowWidth * 0.5;
+            // if (windowWidth < 770) width = windowHeight * 0.5;
+            // if (windowWidth < 630) width = windowHeight * 0.45;
             height = width * imgRatio;
         }
 

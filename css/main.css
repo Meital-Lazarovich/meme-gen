@@ -27,7 +27,7 @@ a {
 header {
     background-color: #00cc8a;
     padding: 0 5vw;
-    position: sticky;
+    position: relative;
     top: 0;
 }
 
@@ -42,10 +42,12 @@ main {
 
 footer {
     background-color: #00cc8a;
-    height: 130px;
-    padding: 30px 0;
+    height: 8.125rem;
+    padding: 1.875rem 0;
     color: white;
     font-size: 0.8em;
+    position: relative;
+    bottom: 0;
 }
 
 p {
@@ -89,7 +91,8 @@ header .logo {
 }
 
 .nav-item {
-    padding: 1rem;
+    height: 3rem;
+    width: 5rem;
     color: white;
     transition: color .3s;
 }
@@ -138,25 +141,35 @@ canvas.holding-line {
 }
 
 main.editor {
-    padding: 27px 0;
-    min-height: 455px;
+    padding: 0 1rem;
     flex-wrap: wrap;
+    height: calc(100vh - 2.5rem - 2rem);
 }
 
 header.small .nav-item {
-    padding: 0.5rem;
+    height: 2rem;
+    width: 5rem;
 }
 
 footer.small {
-    height: 80px;
-    padding: 10px;
+    height: 2.5rem;
+    padding: 0;
+    flex-direction: row;
+    justify-content: center;
+}
+
+footer.small > *:not(:last-child) {
+    padding-right: 1.25rem;
 }
 
 .props {
-    height: 400px;
-    width: 285px;
+    height: 74vh;
+    width: 17.8125rem;
     margin-right: 2vw;
 }
+
+
+
 
 .line-input {
     padding: 20px 0;
@@ -165,7 +178,7 @@ footer.small {
     border-radius: 12px;
     border: none;
     display: block;
-    font-size: 20px;
+    font-size: 1.25em;
 }
 
 .select-font {
@@ -208,6 +221,14 @@ footer.small {
     width: 100%;
 }
 
+.props .line-props {
+    height: 30%;
+}
+
+.props .edit-props {
+    width: 57%;
+}
+
 .share-modal {
     width: 300px;
     height: 300px;
@@ -246,13 +267,38 @@ button.close-btn {
 
 /* media queries */
 
-@media (max-width: 740px) {
+@media (max-width: 770px) {
     main.editor {
-        padding: 1rem;
+        height: calc(100vh - 1.5rem - 2rem);
+        padding: 0.5rem;
     }
+
     .props {
-        width: 400px;
+        height: 74vh;
+        /* width: calc(100% - 50vh - 4rem); */
+        margin: 0;
+    }
+
+    .line-input {
         padding: 1rem 0;
+        font-size: 1em;
+    }
+
+    footer.small {
+        height: 1.5rem;
+    }
+}
+
+@media (max-width: 630px) {
+    
+    .line-input {
+        padding: 0.5rem 0;
+        font-size: 1em;
+    }
+
+    .props {
+        height: 45vh;
+        width: 100%;
         margin: 0;
     }
 }

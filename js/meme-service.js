@@ -52,6 +52,7 @@ function getCurrImg() {
 }
 
 function getTxts() {
+    if (!gMeme) return;
     return gMeme.txts;
 }
 
