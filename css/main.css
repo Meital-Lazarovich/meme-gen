@@ -164,12 +164,10 @@ footer.small > *:not(:last-child) {
 
 .props {
     height: 74vh;
-    width: 17.8125rem;
+    width: 18rem;
     margin-right: 2vw;
+    margin-left: 2vw;
 }
-
-
-
 
 .line-input {
     padding: 20px 0;
@@ -223,6 +221,7 @@ footer.small > *:not(:last-child) {
 
 .props .line-props {
     height: 30%;
+    flex-direction: column;
 }
 
 .props .edit-props {
@@ -275,7 +274,7 @@ button.close-btn {
 
     .props {
         height: 74vh;
-        /* width: calc(100% - 50vh - 4rem); */
+        width: 15rem;
         margin: 0;
     }
 
@@ -294,11 +293,76 @@ button.close-btn {
     .line-input {
         padding: 0.5rem 0;
         font-size: 1em;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    button {
+        height: 2.2rem;
+        width: 2.2rem;
     }
 
     .props {
-        height: 45vh;
+        height: 37vh;
+        width: 90%;
+        margin: 0;
+    }
+
+    .props .line-props {
+        flex-direction: row;
+        justify-content: space-between;
         width: 100%;
+    }
+
+    .props .text-props {
+        width: 60%;
+    }
+
+    .props .edit-props {
+        width: 35%;
+    }
+
+    .props .font-props {
+        width: 70%;
+        justify-content: space-around;
+    }
+
+    .share-btn {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 445px) {
+    .props {
+        width: 95%;
+    }
+
+    .props .text-props {
+        width: 61%;
+    }
+
+    .props .edit-props {
+        width: 37%;
+    }
+}
+
+@media (min-height: 640px) {
+    .props .line-props {
+        height: 34%;
+        flex-direction: column;
+    }
+    
+    .props .edit-props {
+        width: 57%;
+    }
+
+    .props .text-props, .props .font-props {
+        width: 100%;
+    }
+
+    .props {
+        height: 43vh;
+        width: 95%;
         margin: 0;
     }
 }

@@ -34,10 +34,13 @@ function renderImg() {
             width = height * imgRatio;
         } else {
             //horizontal or square img:
-            width = windowWidth * 0.45;
-            if (windowWidth < 930) width = windowWidth * 0.5;
-            // if (windowWidth < 770) width = windowHeight * 0.5;
-            // if (windowWidth < 630) width = windowHeight * 0.45;
+            console.log('windowHeight', windowHeight);
+            width = windowWidth * 0.35;
+            if (windowWidth < 1100) width = windowWidth * 0.4;
+            if (windowWidth < 845) width = windowWidth * 0.4;
+            if (windowWidth < 550) width = windowWidth * 0.5;
+            if (windowWidth < 440) width = windowWidth * 0.6;
+
             height = width * imgRatio;
         }
 
