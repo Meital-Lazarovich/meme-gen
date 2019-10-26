@@ -6,9 +6,6 @@ let gImgWidth;
 let gImgHeight;
 let gIsHoldingLine = false;
 
-//DELETE:
-let gWindowHeight = window.innerHeight;
-
 
 function initCanvas() {
     createImgs();
@@ -201,7 +198,7 @@ function onChangeFont(font) {
     // updateTxt('font', font);
 
     // DELETE:
-    updateTxt('line', `${windowWidth}, ${windowHeight}`);
+    updateTxt('line', `${window.innerWidth}, ${window.innerHeight}`);
     renderImg();
 }
 
