@@ -140,6 +140,7 @@ function getCurrUserMeme(memeIdx) {
 function filterImgs(keyword) {
     gFilter = keyword;
     gKeywords = loadKeywords();
+    if (!gKeywords[keyword]) return;
     if (gKeywords[keyword] < 35) gKeywords[keyword]++;
     saveKeywords();
 }

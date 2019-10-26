@@ -175,6 +175,10 @@ button.close-btn {
     width: 23px;
 }
 
+.search-keyword button:hover {
+    background-color: transparent;
+}
+
 .search-keyword img {
     margin: 0;
 }
@@ -206,6 +210,10 @@ button.close-btn {
     margin-left: 5px;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.keywords-container span:hover {
+    color: #6d6d6d;
 }
 
 .gallery-container, .saved-container {

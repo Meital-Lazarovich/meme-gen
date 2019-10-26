@@ -44,6 +44,13 @@ function onKeywordFilter(elKeyword) {
     renderKeywords();
 }
 
+function onSearchKeyword() {
+    let keyword = document.querySelector('.search-line').value;
+    filterImgs(keyword);
+    renderGallery();
+    renderKeywords();
+}
+
 function renderSavedMemes() {
     let memes = getUserMemes();
     if (!memes) return;
