@@ -6,6 +6,9 @@ let gImgWidth;
 let gImgHeight;
 let gIsHoldingLine = false;
 
+//DELETE:
+let gWindowHeight = window.innerHeight;
+
 
 function initCanvas() {
     createImgs();
@@ -26,6 +29,7 @@ function renderImg() {
         let width;
         let windowHeight = window.innerHeight;
         let windowWidth = window.innerWidth;
+
 
         if (imgRatio > 1) {
             //verticle img:
@@ -126,7 +130,7 @@ function onCanvasClicked(ev) {
     } else onUnselectLine();
 }
 
-function onCanvasClickEnd(ev) {
+function onCanvasClickEnd() {
     gIsHoldingLine = false;
     document.querySelector('.canvas').classList.remove('holding-line');
     onCurrLineChange();
@@ -194,7 +198,10 @@ function onChangeAlign(align) {
 }
 
 function onChangeFont(font) {
-    updateTxt('font', font);
+    // updateTxt('font', font);
+
+    // DELETE:
+    updateTxt('line', gWindowHeight);
     renderImg();
 }
 
