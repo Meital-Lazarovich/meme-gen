@@ -11,9 +11,11 @@
 </head>
 
 <body onload="renderSavedMemes()">
+    <div class="menu-screen" onclick="toggleMenu()"></div>
     <div class="screen" onclick="closeSavedModal()"></div>
     <header class="flex container space-between align-center">
         <a href="index.html" class="logo"><img src="img/icons/logo.png" /></a>
+        <button class="main-nav-btn" onclick="toggleMenu()"><img src="img/icons/nav.png"/></button>
         <ul class="nav-bar flex clean-list">
             <li><a href="index.html" class="nav-item flex justify-center align-center">Gallery</a></li>
             <li><a href="#" class="active nav-item flex justify-center align-center">Saved</a></li>

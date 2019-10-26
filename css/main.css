@@ -106,6 +106,22 @@ header .logo{
     color: #040a2c;
 }
 
+.main-nav-btn {
+    display: none;
+    background-color: transparent;
+    margin: 0;
+    height: 30px;
+}
+
+.main-nav-btn img {
+    margin: 0;
+    height: 100%;
+}
+
+.main-nav-btn:hover {
+    background-color: transparent;
+}
+
 /* modal */
 
 .modal {
@@ -387,6 +403,71 @@ div.share-container {
 
     .share-btn {
         margin-top: 1rem;
+    }
+
+    .main-nav-btn {
+        display: block;
+    }
+
+    .nav-bar {
+        flex-direction: column;
+        height: 100vh;
+        position: fixed;
+        top: 57px;
+        right: 0;
+        background: #5d5d5de6;
+        border-left: 2px solid rgba(223, 218, 218, 0.6);
+        transform: translate(100%, 0);
+        transition: transform .6s;
+    }
+
+    .nav-item, header.small .nav-item {
+        height: 5rem;
+        width: 7rem;
+        border-bottom: 1px solid #b0afb0;
+    }
+
+    .nav-item:hover {
+        color: white;
+    }
+
+    .nav-item.active {
+        box-shadow: none;
+        font-weight: bold;
+        color: #00cc8a;
+        box-shadow: -2px 0px 0px 0px #00cc8a;
+    }
+
+    header.small {
+        height: 2rem;
+    }
+
+    header.small .nav-bar {
+        top: 38px;
+    }
+
+    .menu-screen {
+        position: fixed;
+        width: 100%;
+        height:100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity .3s;
+    }
+
+    .open-menu .nav-bar {
+        transform: translate(0, 0);
+    }
+
+    .open-menu .menu-screen {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    header {
+        height: 3rem;
+        position: sticky;
     }
 }
 

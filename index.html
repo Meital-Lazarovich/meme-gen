@@ -7,11 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MemeGen</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="img/icons/favicon.png"/>
 </head>
 
 <body onload="initGallery()">
+    <div class="menu-screen" onclick="toggleMenu()"></div>
     <header class="flex space-between align-center">
         <a href="index.html" class="logo"><img src="img/icons/logo.png"/></a>
+        <button class="main-nav-btn" onclick="toggleMenu()"><img src="img/icons/nav.png"/></button>
         <ul class="nav-bar flex clean-list">
             <li><a href="#" class="nav-item active flex justify-center align-center">Gallery</a></li>
             <li><a href="saved.html" class="nav-item flex justify-center align-center">Saved</a></li>

@@ -46,3 +46,7 @@ function toggleModal(modalClass) {
     document.querySelector('body').classList.toggle('opened-modal');
 }
 
+function toggleMenu() {
+    document.querySelector('body').classList.toggle('open-menu');
+}
+
