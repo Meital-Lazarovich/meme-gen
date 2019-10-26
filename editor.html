@@ -12,9 +12,10 @@
 <body onload="initCanvas()">
     <div class="screen" onclick="closeShareModal()"></div>
     <header class="flex container space-between align-center small">
-        <img src="img/icons/logo.png"/>
+        <a href="index.html" class="logo"><img src="img/icons/logo.png"/></a>
         <ul class="nav-bar flex clean-list">
             <li><a href="index.html" class="nav-item flex justify-center align-center">Gallery</a></li>
+            <li><a href="saved.html" class="nav-item flex justify-center align-center">Saved</a></li>
             <li><a href="#" class="nav-item flex justify-center align-center">About</a></li>
         </ul>
     </header>
@@ -52,12 +53,17 @@
                 <button title="text color" class="txt-color"><label for="txt-color"><img src="img/icons/color.png"/></label></button>
                 <input type="color" id="txt-color" class="color-input" onchange="onChangeColor('txtColor', this.value)"/>
             </div>
+            
             <button class="share-btn" onclick="openShareModal()">Share</button>
-            <section class="share-modal closed flex column align-center justify-center">
+            <section class="share-modal modal closed flex column align-center justify-center">
                 <button class="close-btn" onclick="closeShareModal()">X</button>
-                <button class="share-btn">Share</button>
-                <button class="share-btn">Download</button>
-                <button class="share-btn">Save</button>
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="onShareMeme(this, event)">
+                    <input name="img" class="imgData" type="hidden" />
+                    <button class="share-btn" type="submit">Share</button>
+                    <div class="share-container"></div>
+                </form>
+                <button class="share-btn"><a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg">Download</a></button>
+                <button class="share-btn" onclick="onSaveMeme()">Save</button>
             </section>
         </section>
     </main>

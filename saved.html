@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MemeGen</title>
+    <link rel="icon" href="http://example.com/favicon.png">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="renderSavedMemes()">
+    <div class="screen" onclick="closeSavedModal()"></div>
+    <header class="flex container space-between align-center">
+        <a href="index.html" class="logo"><img src="img/icons/logo.png" /></a>
+        <ul class="nav-bar flex clean-list">
+            <li><a href="index.html" class="nav-item flex justify-center align-center">Gallery</a></li>
+            <li><a href="#" class="active nav-item flex justify-center align-center">Saved</a></li>
+            <li><a href="#" class="nav-item flex justify-center align-center">About</a></li>
+        </ul>
+    </header>
+    <main class="saved">
+        <div class="saved-container"></div>
+    </main>
+    <section class="saved-modal modal closed flex column align-center justify-center">
+        <button class="close-btn" onclick="closeSavedModal()">X</button>
+        <div class="meme-container"></div>
+        <div class="share-saved flex align-center space-around">
+            <form action="" method="POST" enctype="multipart/form-data" class="flex align-center space-between" onsubmit="onShareMeme(this, event)">
+                <input name="img" class="imgData" type="hidden" />
+                <button class="share-btn" type="submit">Share</button>
+                <div class="share-container"></div>
+            </form>
+            <button class="share-btn"><a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg">Download</a></button>
+        </div>
+    </section>
+    <footer class="flex column space-around align-center">
+        <img class="logo" src="img/icons/logo.png" />
+        <p>&copy; Meital Lazarovich 2019</p>
+    </footer>
+
+    <script src="js/util.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/editor.js"></script>
+</body>
+
+</html>

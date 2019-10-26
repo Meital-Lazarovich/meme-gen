@@ -195,10 +195,7 @@ function onChangeAlign(align) {
 }
 
 function onChangeFont(font) {
-    // updateTxt('font', font);
-
-    // DELETE:
-    updateTxt('line', `${window.innerWidth}, ${window.innerHeight}`);
+    updateTxt('font', font);
     renderImg();
 }
 
@@ -212,17 +209,6 @@ function onUnselectLine() {
     onCurrLineChange();
 }
 
-function openShareModal() {
-    document.querySelector('.share-modal').classList.remove('closed');
-    document.querySelector('body').classList.add('opened-modal');
-}
-
-function closeShareModal() {
-    document.querySelector('.share-modal').classList.add('closed');
-    document.querySelector('body').classList.remove('opened-modal');
-}
-
-
 function onCurrLineChange() {
     let currTxt = getCurrTxt();
     let elTxtInput = document.querySelector('.line-input');
@@ -235,3 +221,70 @@ function onCurrLineChange() {
     } else elTxtInput.value = '';
     renderImg();
 }
+
+function openShareModal() {
+    onUnselectLine();
+    toggleModal('.share-modal');
+}
+
+function closeShareModal() {
+    toggleModal('.share-modal');
+}
+
+function onDownloadMeme(elLink) {
+    let imgContent;
+    if (window.location.pathname === '/saved.html') imgContent = gClickedMeme;
+    else imgContent = gCanvas.toDataURL('image/jpeg');
+    elLink.href = imgContent;
+}
+
+function onSaveMeme() {
+    let memeContent = gCanvas.toDataURL('image/jpeg');
+    saveUserMeme(memeContent);
+    closeShareModal();
+}
+
+function onShareMeme(elForm, ev) {
+    ev.preventDefault();
+    let img;
+    if (window.location.pathname === '/saved.html') img = gClickedMeme;
+    else img = gCanvas.toDataURL('image/jpeg');
+    document.querySelector('.imgData').value = img;
+    function onSuccess(uploadedImgUrl) {
+        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.share-container').innerHTML = `
+        <a class="w-inline-block social-share-btn btn fb" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           <button class="share-btn facebook-btn"><img src="img/icons/facebook.png"/></button>
+        </a>`
+    }
+    doUploadMeme(elForm, onSuccess);
+}
+
+function doUploadMeme(elForm, onSuccess) {
+    var formData = new FormData(elForm);
+
+    fetch('http://ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(function (response) {
+        return response.text()
+    })
+
+    .then(onSuccess)
+    .catch(function (error) {
+        console.error(error)
+    })
+}
+
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v3.0&appId=807866106076694&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+
+
+

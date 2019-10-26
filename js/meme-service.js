@@ -1,12 +1,14 @@
 'use strict';
 
 const MEME_KEY = 'meme';
+const USER_MEMES_KEY = "userMemes";
 
 let gNextId = 101;
 let gImgs;
 // var gKeywords = {'happy': 12,'funny puk': 1} - OBJUCT MAP
 let gKeywords;
 let gMeme;
+let gUserMemes;
 
 
 function createImgs() {
@@ -108,6 +110,22 @@ function removeLine() {
     switchLine();
 }
 
+function saveUserMeme(img) {
+    let memes = getUserMemes();
+    gUserMemes = (memes) ? memes : [];
+    gUserMemes.unshift(img);
+    saveUserMemes();
+}
+
+function getUserMemes() {
+    return loadUserMemes();
+}
+
+function getCurrUserMeme(memeIdx) {
+    gUserMemes = loadUserMemes();
+    return gUserMemes[memeIdx];
+}
+
 
 // saving and loading from local storage
 
@@ -119,4 +137,11 @@ function loadMeme() {
     return loadFromStorage(MEME_KEY);
 }
 
+function saveUserMemes() {
+    saveToStorage(USER_MEMES_KEY, gUserMemes)
+}
+
+function loadUserMemes() {
+    return loadFromStorage(USER_MEMES_KEY);
+}
 
