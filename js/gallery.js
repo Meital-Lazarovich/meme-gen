@@ -19,11 +19,33 @@ function renderGallery() {
         return `<div onclick="onSelectImg(${img.id})"><img src="${img.url}"/></div>`;
     });
     document.querySelector('.gallery-container').innerHTML = strHTMLs.join('');
+    renderKeywords();
+}
+
+function renderKeywords() {
+    let keywords = getKeywords();
+    let strHTML = '';
+    for (var key in keywords) {
+        strHTML += `<span style="font-size: ${keywords[key] * 2 + 10}px;"
+        onclick="onKeywordFilter(this)">${key}</span>`;
+    }
+    document.querySelector('.keywords-container').innerHTML = strHTML;
+}
+
+function onToggleMoreKeywords(elMoreBtn) {
+    document.querySelector('.keywords-container').classList.toggle('opened');
+    let txt = (elMoreBtn.innerText === 'more...') ? 'less' : 'more...';
+    elMoreBtn.innerText = txt;
+}
+
+function onKeywordFilter(elKeyword) {
+    filterImgs(elKeyword.innerText);
+    renderGallery();
+    renderKeywords();
 }
 
 function renderSavedMemes() {
     let memes = getUserMemes();
-    console.log('memes', memes);
     if (!memes) return;
     let strHTMLs = memes.map((meme, idx) => {
         return `<img src=${meme} data-idx=${idx} onclick="openSavedModal(this)"/>`

@@ -26,15 +26,14 @@ a {
 
 header {
     background-color: #00cc8a;
-    padding: 0 5vw;
+    padding: 0 1.125rem;
     position: relative;
     top: 0;
+    height: 3rem;
+    position: sticky;
 }
 
 main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #e3e3e3;
     padding: 1.125rem;
     min-height: 386px;
@@ -128,7 +127,6 @@ header .logo{
     position: absolute;
     left: 50%;
     top: 50%; 
-
     z-index: 2000;
     background-color: #ffffffd4;
 }
@@ -155,6 +153,60 @@ button.close-btn {
 
 
 /* gallery */
+
+.keywords {
+    padding: 1rem 1.125rem;
+    width: 98vw;
+}
+
+.keywords input {
+    border: none;
+    width: 175px;
+    font-size: 0.8em;
+}
+
+.search-keyword {
+    border-bottom: 1px solid #000;
+    height: 28px;
+}
+
+.search-keyword button {
+    height: 23px;
+    width: 23px;
+}
+
+.search-keyword img {
+    margin: 0;
+}
+
+.keywords-div {
+    justify-content: flex-start;
+    width: 25rem;
+}
+
+.keywords-container {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.keywords-container.opened {
+    white-space: initial;
+}
+
+.keywords-container span {
+    display: inline-block;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.keywords p {
+    align-self: flex-end;
+    font-size: 0.8em;
+    margin-left: 5px;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .gallery-container, .saved-container {
     display: grid;
@@ -205,9 +257,10 @@ main.saved {
 }
 
 .share-saved {
-    width: 80%;
+    width: 65%;
     margin-top: 20px;
 }
+
 
 /* editor */
 
@@ -360,6 +413,14 @@ div.share-container {
     footer.small {
         height: 1.5rem;
     }
+
+    .keywords {
+        flex-direction: column;
+    }
+
+    .keywords-div {
+        width: 22rem;
+    }
 }
 
 @media (max-width: 630px) {
@@ -482,6 +543,10 @@ div.share-container {
 
     .props .edit-props {
         width: 37%;
+    }
+
+    .keywords-div {
+        max-width: 90%;
     }
 }
 

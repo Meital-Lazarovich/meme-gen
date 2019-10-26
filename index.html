@@ -22,7 +22,16 @@
             <li><a href="#" class="nav-item flex justify-center align-center">About</a></li>
         </ul>
     </header>
-    <section class="keywords"></section>
+    <section class="keywords flex align-center space-between">
+        <div class="search-keyword flex align-center space-between">
+            <input type="text" placeholder="Enter search keyword"/>
+            <button><img src="img/icons/search.png"/></button>
+        </div>
+        <div class="keywords-div flex align-center">
+            <div class="keywords-container"></div>
+            <p onclick="onToggleMoreKeywords(this)">more...</p>
+        </div>
+    </section>
     <main>
         <div class="gallery-container"></div>
     </main>
