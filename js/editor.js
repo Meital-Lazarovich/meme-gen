@@ -201,7 +201,7 @@ function onChangeFont(font) {
     // updateTxt('font', font);
 
     // DELETE:
-    updateTxt('line', gWindowHeight);
+    updateTxt('line', `${windowWidth}, ${windowHeight}`);
     renderImg();
 }
 
