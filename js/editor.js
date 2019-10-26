@@ -75,6 +75,10 @@ function renderImgTxts() {
     txts.forEach(txt => {
         gCtx.fillStyle = txt.txtColor;
         gCtx.strokeStyle = txt.strokeColor;
+        let line = txt.line;
+        while (line.length * txt.size / 2.2 > gImgWidth) {
+            txt.size--;
+        }
         gCtx.font = `bold ${txt.size}px ${txt.font}`;
         let txtX;
         switch (txt.align) {
@@ -95,7 +99,6 @@ function renderImgTxts() {
         let txtY = txt.height;
         gCtx.textBaseline = "middle";
 
-        let line = txt.line;
         if (!line) return;
         gCtx.fillText(line, txtX, txtY);
         gCtx.strokeText(line, txtX, txtY);
