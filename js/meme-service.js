@@ -15,7 +15,7 @@ let gFilter;
 function createImgs() {
     gImgs = [];
     for (let i = 0; i < 25; i++) {
-        gImgs.push(createImg(gNextId, `img/memes/${i}.jpg`, ['popular', 'all'])) 
+        gImgs.push(createImg(gNextId, `img/memes/${i}.jpg`, ['popular', 'all']))
         gNextId++;
     }
     createKeywords();
@@ -39,9 +39,8 @@ function createMeme(selectedImgId) {
 }
 
 function createTxt(height) {
-    let size = 60;
-    if (window.innerWidth < 750) size = 40;
-    return {size, align: 'center', txtColor: '#ffffff', strokeColor: '#000000', height, line: '', font: 'Impact'}
+    let size = (window.innerWidth < 750) ? 40 : 60
+    return { size, align: 'center', txtColor: '#ffffff', strokeColor: '#000000', height, line: '', font: 'Impact' }
 }
 
 function updateTxt(prop, val) {

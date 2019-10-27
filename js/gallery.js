@@ -41,13 +41,11 @@ function onToggleMoreKeywords(elMoreBtn) {
 function onKeywordFilter(elKeyword) {
     filterImgs(elKeyword.innerText);
     renderGallery();
-    renderKeywords();
 }
 
 function onSearchKeyword(val) {
     filterImgs(val);
     renderGallery();
-    renderKeywords();
 }
 
 function renderSavedMemes() {
