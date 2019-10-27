@@ -10,7 +10,6 @@ function initGallery() {
 function onSelectImg(imgIdx) {
     createMeme(imgIdx);
     window.location = 'editor.html';
-    initCanvas();
 }
 
 function renderGallery() {
@@ -74,5 +73,31 @@ function toggleModal(modalClass) {
 
 function toggleMenu() {
     document.querySelector('body').classList.toggle('open-menu');
+}
+
+function renderHiddenCanvas(img) {
+    let elHiddenCanvas = document.querySelector('.hidden-canvas');
+    let ctx = elHiddenCanvas.getContext('2d');
+    elHiddenCanvas.width = img.width;
+    elHiddenCanvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+    let uploadedImg = elHiddenCanvas.toDataURL('image/jpeg');
+    saveUploadedImg(uploadedImg);
+    onSelectImg('uploaded');
+}
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderHiddenCanvas)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader();
+    
+    reader.onload = function (event) {
+        var img = new Image();
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(ev.target.files[0]);
 }
 

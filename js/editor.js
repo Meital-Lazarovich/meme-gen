@@ -25,7 +25,6 @@ function renderImg() {
         let height;
         let width;
         let windowWidth = window.innerWidth;
-        let windowHeight = window.innerHeight;
 
         
         if (imgRatio > 1) {

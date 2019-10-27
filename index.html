@@ -35,7 +35,9 @@
     <main>
         <div class="gallery-container"></div>
     </main>
-    <!-- <button class="upload-btn"><img src="img/icons/upload.png"/></button> -->
+    <button class="upload-btn"><label for="file-input"><img src="img/icons/upload.png"/></label></button>
+    <input id="file-input" type="file" name="image" onchange="onImgInput(event)"/>
+    <canvas class="hidden-canvas" width="500" height="500"></canvas>
     <footer class="flex column space-around align-center">
         <img class="logo" src="img/icons/logo.png"/>
         <p>&copy; Meital Lazarovich 2019</p>

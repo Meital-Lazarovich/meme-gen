@@ -3,6 +3,7 @@
 const MEME_KEY = 'meme';
 const USER_MEMES_KEY = 'userMemes';
 const KEYWORDS_KEY = 'keywords';
+const UPLOADED_IMG_KEY = 'uploadedImg';
 
 let gNextId = 101;
 let gImgs;
@@ -56,6 +57,9 @@ function getKeywords() {
 
 function getCurrImg() {
     gMeme = loadMeme();
+    if (gMeme.selectedImgId === 'uploaded') {
+        return {url: loadUploadedImg()};
+    }
     return gImgs.find(img => {
         return img.id === gMeme.selectedImgId;
     });
@@ -154,6 +158,14 @@ function filterImgs(keyword) {
 
 
 // saving and loading from local storage
+
+function loadUploadedImg() {
+    return loadFromStorage(UPLOADED_IMG_KEY)
+}
+
+function saveUploadedImg(img) {
+    saveToStorage(UPLOADED_IMG_KEY, img);
+}
 
 function saveMeme() {
     saveToStorage(MEME_KEY, gMeme);

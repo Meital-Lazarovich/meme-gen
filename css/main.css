@@ -284,6 +284,16 @@ main.saved {
     margin-top: 20px;
 }
 
+.upload-btn {
+    border-radius: 50%;
+    background-color: #00cc8a;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    height: 60px;
+    width: 60px;
+}
+
 
 /* editor */
 
@@ -365,7 +375,7 @@ footer.small > *:not(:last-child) {
     background-color: #45daaa;
 }
 
-.color-input {
+.color-input, #file-input, .hidden-canvas {
     position: fixed;
     top: 100000px;
     bottom: 100000px;
@@ -540,6 +550,10 @@ div.share-container {
 
     .opened-modal .screen {
         height: 645px;
+    }
+
+    .keywords-div {
+        width: 90%;
     }
 }
 
