@@ -558,7 +558,7 @@ div.share-container {
     }
 }
 
-@media (min-height: 600px) {
+@media (max-width: 445px) and (min-height: 600px) {
     .props .line-props {
         height: 34%;
         flex-direction: column;
