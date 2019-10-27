@@ -44,9 +44,8 @@ function onKeywordFilter(elKeyword) {
     renderKeywords();
 }
 
-function onSearchKeyword() {
-    let keyword = document.querySelector('.search-line').value;
-    filterImgs(keyword);
+function onSearchKeyword(val) {
+    filterImgs(val);
     renderGallery();
     renderKeywords();
 }

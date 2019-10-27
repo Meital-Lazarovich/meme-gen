@@ -39,7 +39,9 @@ function createMeme(selectedImgId) {
 }
 
 function createTxt(height) {
-    return {size: 60, align: 'center', txtColor: '#ffffff', strokeColor: '#000000', height, line: '', font: 'Impact'}
+    let size = 60;
+    if (window.innerWidth < 750) size = 40;
+    return {size, align: 'center', txtColor: '#ffffff', strokeColor: '#000000', height, line: '', font: 'Impact'}
 }
 
 function updateTxt(prop, val) {
@@ -138,10 +140,16 @@ function getCurrUserMeme(memeIdx) {
 }
 
 function filterImgs(keyword) {
-    gFilter = keyword;
     gKeywords = loadKeywords();
-    if (!gKeywords[keyword]) return;
-    if (gKeywords[keyword] < 35) gKeywords[keyword]++;
+    keyword = keyword.toLowerCase();
+    for (var key in gKeywords) {
+        if (key.includes(keyword)) {
+            keyword = key;
+            break;
+        }
+    }
+    if (gFilter !== keyword && gKeywords[keyword] < 30) gKeywords[keyword]++;
+    gFilter = keyword;
     saveKeywords();
 }
 

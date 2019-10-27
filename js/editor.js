@@ -266,7 +266,7 @@ function onShareMeme(elForm, ev) {
 function doUploadMeme(elForm, onSuccess) {
     var formData = new FormData(elForm);
 
-    fetch('http://ca-upload.com/here/upload.php', {
+    fetch('//ca-upload.com/here/upload.php', {
         method: 'POST',
         body: formData
     })
